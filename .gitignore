@@ -7,3 +7,5 @@ trash
 examples*
 .env
 .venv/
+build/
+openvoice.egg-info/
