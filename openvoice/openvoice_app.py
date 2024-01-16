@@ -115,7 +115,7 @@ def predict(prompt, style, audio_file_pth, agree):
     
     # note diffusion_conditioning not used on hifigan (default mode), it will be empty but need to pass it to model.inference
     try:
-        target_se, audio_name = se_extractor.get_se(speaker_wav, tone_color_converter, target_dir='processed', vad=True)
+        target_se, audio_name = se_extractor.get_se(speaker_wav, tone_color_converter, target_dir='/tmp/processed', vad=True)
     except Exception as e:
         text_hint += f"[ERROR] Get target tone color error {str(e)} \n"
         gr.Warning(

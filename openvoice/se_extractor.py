@@ -16,7 +16,7 @@ from whisper_timestamped.transcribe import get_audio_tensor, get_vad_segments
 model_size = "medium"
 # Run on GPU with FP16
 model = None
-def split_audio_whisper(audio_path, audio_name, target_dir='processed'):
+def split_audio_whisper(audio_path, audio_name, target_dir='/tmp/processed'):
     global model
     if model is None:
         model = WhisperModel(model_size, device="cuda", compute_type="float16")
@@ -126,7 +126,7 @@ def hash_numpy_array(audio_path):
     base64_value = base64.b64encode(hash_value)
     return base64_value.decode('utf-8')[:16].replace('/', '_^')
 
-def get_se(audio_path, vc_model, target_dir='processed', vad=True):
+def get_se(audio_path, vc_model, target_dir='/tmp/processed', vad=True):
     device = vc_model.device
 
     audio_name = f"{os.path.basename(audio_path).rsplit('.', 1)[0]}_{hash_numpy_array(audio_path)}"
